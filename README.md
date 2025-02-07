@@ -10,5 +10,5 @@ npm run dev
 とりあえず main ブランチにマージすると下記に公開されるので develop ブランチで開発してキリのいいときに main にマージするのはどうだろう(^^)/  
 https://negitorobarchart.netlify.app/
 
-↑ 　https://app.netlify.com　　
+https://app.netlify.com
 フリープランは環境にメンバー招待できないので私一人しかコンソール見れない(´・ω・｀)
