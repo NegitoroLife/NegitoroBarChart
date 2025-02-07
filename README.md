@@ -5,6 +5,8 @@ npm i
 npm run dev
 ```
 
+http://localhost:3000 にアプリ起動
+
 ### Volta
 
 node のバージョン管理に volta 使ってみたよ！  
