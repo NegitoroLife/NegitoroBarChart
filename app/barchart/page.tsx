@@ -10,8 +10,8 @@ const Barchert = () => {
 
   const data = {
     series: [
-      { name: 'x', values: ['A', 'B', 'C'] },
-      { name: 'y', values: [5, 10, 7] }
+      { name: 'x', values: ['A', 'B', 'C', 'D', 'E'] },
+      { name: 'y', values: [5, 10, 7, 3, 6] }
     ]
   };
 
@@ -23,8 +23,8 @@ const Barchert = () => {
       data,
       config: {
         channels: {
-          x: { set: 'x' },
-          y: { set: 'y' }
+          x: { set: 'y' },
+          y: { set: 'x' }
         }
       }
     });
@@ -52,8 +52,8 @@ const Barchert = () => {
       data: sortedData,
       config: {
         channels: {
-          x: { set: 'x' },
-          y: { set: 'y' }
+          x: { set: 'y' },
+          y: { set: 'x' }
         }
       }
     });
