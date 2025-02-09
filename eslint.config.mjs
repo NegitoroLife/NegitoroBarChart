@@ -13,14 +13,9 @@ const eslintConfig = [
 	...compat.extends("next/core-web-vitals", "next/typescript"),
 	{
 		rules: {
-			// すべてのルールを警告に変更
-			"no-unused-vars": "warn",
-			"no-explicit-any": "warn",
-			"explicit-module-boundary-types": "warn",
 			"@typescript-eslint/no-unused-vars": "warn",
-			"@typescript-eslint/explicit-module-boundary-types": "warn",
 			"@typescript-eslint/no-explicit-any": "warn",
-			// 他のルールも必要に応じて追加
+			"@typescript-eslint/explicit-module-boundary-types": "warn",
 		},
 	},
 ];
