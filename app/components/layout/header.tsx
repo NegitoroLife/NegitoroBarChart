@@ -7,6 +7,9 @@ export default function Header() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [user, setUser] = useState(null);
+	const [popupMessage, setPopupMessage] = useState("");
+	const [showPopup, setShowPopup] = useState(false);
+	const [popupColor, setPopupColor] = useState("bg-green-500");
 
 	const handleLogin = async () => {
 		try {
@@ -21,12 +24,21 @@ export default function Header() {
 			const data = await response.json();
 			if (response.ok) {
 				setUser(data.user);
-				setIsModalOpen(false);
+				setPopupMessage("ログインに成功しました");
+				setPopupColor("bg-green-500");
 			} else {
-				console.error("Error signing in:", data.error);
+				setPopupMessage("ログインに失敗しました");
+				setPopupColor("bg-red-500");
 			}
+			setIsModalOpen(false);
+			setShowPopup(true);
+			setTimeout(() => setShowPopup(false), 3000);
 		} catch (error) {
 			console.error("Error signing in:", error);
+			setPopupMessage("ログインに失敗しました");
+			setPopupColor("bg-red-500");
+			setShowPopup(true);
+			setTimeout(() => setShowPopup(false), 3000);
 		}
 	};
 
@@ -36,14 +48,22 @@ export default function Header() {
 				method: "POST",
 			});
 
-			const data = await response.json();
 			if (response.ok) {
 				setUser(null);
+				setPopupMessage("ログアウトに成功しました");
+				setPopupColor("bg-red-500");
 			} else {
-				console.error("Error signing out:", data.error);
+				setPopupMessage("ログアウトに失敗しました");
+				setPopupColor("bg-red-500");
 			}
+			setShowPopup(true);
+			setTimeout(() => setShowPopup(false), 3000);
 		} catch (error) {
 			console.error("Error signing out:", error);
+			setPopupMessage("ログアウトに失敗しました");
+			setPopupColor("bg-red-500");
+			setShowPopup(true);
+			setTimeout(() => setShowPopup(false), 3000);
 		}
 	};
 
@@ -65,15 +85,18 @@ export default function Header() {
 						メニュー
 					</button>
 					{user ? (
-						<button
-							onClick={handleLogout}
-							className="ml-2 px-3 py-1 border text-gray-600 rounded hover:bg-gray-100">
-							ログアウト
-						</button>
+						<>
+							<span className="ml-2 text-gray-600">{user.email}</span>
+							<button
+								onClick={handleLogout}
+								className="ml-2 px-3 py-1 border text-red-600 rounded hover:bg-gray-100">
+								ログアウト
+							</button>
+						</>
 					) : (
 						<button
 							onClick={() => setIsModalOpen(true)}
-							className="ml-2 px-3 py-1 border text-gray-600 rounded hover:bg-gray-100">
+							className="ml-2 px-3 py-1 border text-blue-600 rounded hover:bg-gray-100">
 							ログイン
 						</button>
 					)}
@@ -108,6 +131,12 @@ export default function Header() {
 							キャンセル
 						</button>
 					</div>
+				</div>
+			)}
+			{showPopup && (
+				<div
+					className={`fixed bottom-4 right-4 ${popupColor} text-white px-4 py-2 rounded shadow-md`}>
+					{popupMessage}
 				</div>
 			)}
 		</header>
