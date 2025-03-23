@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Header() {
@@ -10,6 +11,7 @@ export default function Header() {
 	const [popupMessage, setPopupMessage] = useState("");
 	const [showPopup, setShowPopup] = useState(false);
 	const [popupColor, setPopupColor] = useState("bg-green-500");
+	const router = useRouter();
 
 	const handleLogin = async () => {
 		try {
@@ -71,12 +73,13 @@ export default function Header() {
 		<header className="bg-white dark:bg-gray-800 shadow-md">
 			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
 				<Image
-					className="dark:invert"
+					className="dark:invert cursor-pointer hover:cursor-pointer"
 					src="/next.svg"
 					alt="Next.js logo"
 					width={100}
 					height={100}
 					priority
+					onClick={() => router.push("/")}
 				/>
 				<nav>
 					<button
