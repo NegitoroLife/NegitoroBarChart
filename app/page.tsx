@@ -30,7 +30,7 @@ export default function Home() {
 				</motion.div>
 				<div className="relative mt-2">
 					<Link
-						href={"/barchart"}
+						href={"/chart_list"}
 						className="bg-blue-600 text-white rounded-md border p-2">
 						グラフを作成！
 					</Link>
