@@ -1,11 +1,11 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Vizzu from 'vizzu';
 
 const Barchert = () => {
 
   // 初回表示
-  const [chart, setChart] = useState(null);
+  const chartRef = useRef(null);
   const [sorted, setSorted] = useState(false);
 
   const data = {
@@ -16,24 +16,25 @@ const Barchert = () => {
   };
 
   useEffect(() => {
-    const vizzuChart = new Vizzu('chart');
-    setChart(vizzuChart);
+    if (!chartRef.current) {
+      const vizzuChart = new Vizzu('chart');
+      chartRef.current = vizzuChart;
 
-    vizzuChart.animate({
-      data,
-      config: {
-        channels: {
-          x: { set: 'y' },
-          y: { set: 'x' }
+      vizzuChart.animate({
+        data,
+        config: {
+          channels: {
+            x: { set: 'y' },
+            y: { set: 'x' }
+          }
         }
-      }
-    });
+      });
+    }
   }, []);
-
 
   // 並び替え
   const handleSort = () => {
-    if (!chart) return;
+    if (!chartRef.current) return;
 
     const sortedIndices = [...data.series[1].values]
       .map((value, index) => ({ value, index }))
@@ -48,7 +49,7 @@ const Barchert = () => {
     };
     setSorted(!sorted);
 
-    chart.animate({
+    chartRef.current.animate({
       data: sortedData,
       config: {
         channels: {
@@ -59,12 +60,13 @@ const Barchert = () => {
     });
   };
 
-  //画面描画
+  // 画面描画
   return (
     <div>
       <button 
         onClick={handleSort}
-        className={`px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded `}>
+        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+      >
         並び替え
       </button>
       <div id="chart" style={{ width: '600px', height: '400px' }}></div>
