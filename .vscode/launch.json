@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch Next.js",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "dev"],
+        "port": 3000,
+        "console": "integratedTerminal",
+        "sourceMaps": true,
+        "smartStep": true
+      }
+    ]
+  }
+  
