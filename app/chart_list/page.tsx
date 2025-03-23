@@ -27,6 +27,9 @@ const Barchert = () => {
             x: { set: 'y' },
             y: { set: 'x' }
           }
+        },
+        style: {
+          logo: { width: 0 }
         }
       });
     }
