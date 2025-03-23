@@ -1,0 +1,4 @@
+{
+    "editor.renderWhitespace": "all",
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
+}
