@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import Vizzu from 'vizzu';
 
-const Barchert = () => {
+const BarChart = () => {
 
   // 初回表示
   const chartRef = useRef(null);
@@ -80,4 +80,4 @@ const Barchert = () => {
   );
 };
 
-export default Barchert;
+export default BarChart;
