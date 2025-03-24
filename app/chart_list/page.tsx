@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import Vizzu from 'vizzu';
 
 const Barchert = () => {
@@ -8,12 +8,15 @@ const Barchert = () => {
   const chartRef = useRef(null);
   const [sorted, setSorted] = useState(false);
 
-  const data = {
-    series: [
-      { name: 'x', values: ['A', 'B', 'C', 'D', 'E'] },
-      { name: 'y', values: [5, 10, 7, 3, 6] }
-    ]
-  };
+  const data = useMemo(
+    () => ({
+      series: [
+        { name: "x", values: ["A", "B", "C", "D", "E"] },
+        { name: "y", values: [5, 10, 7, 3, 6] },
+      ],
+    }),
+    []
+  );
 
   useEffect(() => {
     if (!chartRef.current) {
@@ -33,7 +36,7 @@ const Barchert = () => {
         }
       });
     }
-  }, []);
+  }, [data]);
 
   // 並び替え
   const handleSort = () => {
