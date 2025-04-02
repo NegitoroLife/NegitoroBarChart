@@ -1,4 +1,4 @@
-import { apiFetch } from "@/app/lib/fetcher";
+import { apiFetch } from "@/lib/fetcher";
 
 export default async function Home() {
 	const data = await apiFetch("/api/supabase/chart");
