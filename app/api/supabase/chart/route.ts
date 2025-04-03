@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseServer } from "@/app/lib/supabase/client";
+import { supabaseServer } from "@/lib/supabase/client";
 
 export async function GET() {
 	const { data, error } = await supabaseServer.from("chart").select("*");
